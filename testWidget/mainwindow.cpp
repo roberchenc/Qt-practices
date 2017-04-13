@@ -8,14 +8,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     statusLabel = new QLabel;
     statusLabel->setText(tr("Now Position:"));
-    statusLabel->setFixedWidth(100);
+    //statusLabel->setFixedWidth(100);
 
-    mousePosLabel = new QLabel;
-    mousePosLabel->setText(tr(""));
-    mousePosLabel->setFixedWidth(100);
+//    mousePosLabel = new QLabel;
+//    mousePosLabel->setText(tr(""));
+//    mousePosLabel->setFixedWidth(100);
 
-    statusBar()->addPermanentWidget(statusLabel);
-    statusBar()->addPermanentWidget(mousePosLabel);
+    statusBar()->addWidget(statusLabel);
+    //statusBar()->addPermanentWidget(mousePosLabel);
     //this->setMouseTracking(true);
 
 
@@ -34,16 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->opencamara_btn, SIGNAL(clicked()), this, SLOT(openCamara()));
     connect(ui->paizhao_btn, SIGNAL(clicked()), this, SLOT(takingPictures()));
     connect(ui->closecamara_btn, SIGNAL(clicked()), this, SLOT(closeCamara()));
-    //connect(ui->image_label, SIGNAL(clicked()), this, SLOT(huakuang()));
+    connect(ui->image_label, SIGNAL(position(int,int,int,int)), this, SLOT(showKuang(int, int, int, int )));
 
-
-
-    /*
-     *an zhuang shi jian guo lv qi
-     *
-     */
-//    ui->image_label->installEventFilter(this);
-//    ui->image_label->setMouseTracking(true);
 
 }
 
@@ -97,75 +89,36 @@ void MainWindow::closeCamara()
     cvReleaseCapture(&cam);//释放内存；
 }
 
-void MainWindow::huakuang()
+void MainWindow::showKuang(int startX, int startY, int width, int hight)
 {
-
-    *image_kuang=image_capture.scaled(ui->image_label->width(),
-                           ui->image_label->height(),
-                           Qt::IgnoreAspectRatio,Qt::FastTransformation);
-    kuangW=(float)image_capture.width()/image_kuang->width();
-    kuangH=(float)image_capture.height()/image_kuang->height();
-    ui->image_label->setPixmap(QPixmap::fromImage(*image_kuang));
-
-    _needDraw=true;
+    QString str="StartX:" + QString::number(startX) + ",   StartY:" + QString::number(startY) + ",   width:" + QString::number(width) + ",   hight:" + QString::number(hight);
+    statusLabel->setText(str);
+    //ui->statusBar()->showMessage(str);
+    //mousePosLabel->setText(str);
 
 }
-void MainWindow::paintEvent(QPaintEvent *event)
-{
-    if(_needDraw)
-    {
-        ui->image_label->setPixmap(QPixmap::fromImage(*image_kuang));
 
-    }
-
-//    pixmap.fill(Qt::transparent);
-//    QPainter draw(this);
-//    QPainter draw(&pixmap);
-//    QPen pen; //画笔
-//    pen.setColor(QColor(255, 0, 0));
-//    QBrush brush(QColor(0, 255, 0, 125)); //画刷
-//    draw.setPen(pen); //添加画笔
-//    draw.setBrush(brush); //添加画刷
-//    draw.drawRect(startX, startY, width, hight);
-}
-
-
-//bool MainWindow::eventFilter(QObject* o, QEvent* e)
+//void MainWindow::huakuang()
 //{
-//    if((o == ui->image_label) && (e->type() == QEvent::MouseButtonPress))
-//    {
+//    *image_kuang=image_capture.scaled(ui->image_label->width(),
+//                           ui->image_label->height(),
+//                           Qt::IgnoreAspectRatio,Qt::FastTransformation);
+//    kuangW=(float)image_capture.width()/image_kuang->width();
+//    kuangH=(float)image_capture.height()/image_kuang->height();
+//    ui->image_label->setPixmap(QPixmap::fromImage(*image_kuang));
 
-//        //update();
+//    _needDraw=true;
 
-//        //return eventFilter(o, e);
-
-//    }
-//    else if((o == ui->image_label) && (e->type() == QEvent::MouseButtonRelease))
-//    {
-//        startX = MyLabel::ROI_X;
-//        startY = MyLabel::ROI_Y;
-//        width = MyLabel::ROI_Width;
-//        hight = MyLabel::ROI_Height;
-//        repaint();
-//        //ui->image_label->setPixmap(pixmap);
-//        return true;
-//    }
-//    else if((o == ui->image_label) && (e->type() == QEvent::MouseMove))
-//    {
-
-//        //update();
-//        //return eventFilter(o, e);
-
-//    }
-//    else if((o == ui->image_label) && (e->type() == QEvent::MouseTrackingChange))
-//    {
-
-//        //update();
-//        //return eventFilter(o, e);
-//    }
-//    return false;
 //}
+//void MainWindow::paintEvent(QPaintEvent *event)
+//{
+//    if(_needDraw)
+//    {
+//        ui->image_label->setPixmap(QPixmap::fromImage(*image_kuang));
 
+//    }
+
+//}
 
 
 //void MainWindow::mousePressEvent(QMouseEvent *e)

@@ -33,7 +33,8 @@ private slots:
    void readFarme();       // 读取当前帧信息
    void closeCamara();     // 关闭摄像头。
    void takingPictures();  // 拍照
-   void huakuang();
+   void showKuang(int startX, int startY, int width, int hight);
+   //void huakuang();
 
 protected:
 //    void mousePressEvent(QMouseEvent *e);
@@ -41,7 +42,7 @@ protected:
 //    void mouseReleaseEvent(QMouseEvent *e);
 //    void mouseDoubleClickEvent(QMouseEvent *e);
 
-    void paintEvent(QPaintEvent *);
+    //void paintEvent(QPaintEvent *);
 
 protected:
     //bool eventFilter(QObject* o, QEvent* e);

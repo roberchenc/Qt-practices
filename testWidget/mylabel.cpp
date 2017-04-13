@@ -60,6 +60,7 @@ void MyLabel::paintEvent(QPaintEvent *e)
     ROI_Y=p1.y();
     ROI_Width=p2.x()-p1.x();
     ROI_Height=p2.y()-p1.y();
+    emit position(ROI_X,ROI_Y,ROI_Width,ROI_Height);
     painter.drawRect(ROI_X,ROI_Y,ROI_Width,ROI_Height);
 
 }

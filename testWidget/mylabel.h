@@ -15,6 +15,7 @@ public:
 
 signals:
     void clicked();
+    void position(int, int, int, int);
 
 public slots:
 
