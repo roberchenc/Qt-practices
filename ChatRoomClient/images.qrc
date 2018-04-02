@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/chat2.ico</file>
+        <file>images/chat1.ico</file>
+        <file>images/chat3.ico</file>
+        <file>images/head2.jpg</file>
+        <file alias="head-img.jpg">images/head1.jpg</file>
+    </qresource>
+</RCC>
