@@ -5,7 +5,9 @@ testWidget 包含一个标图工具的demo，打开一张图片在图片上选�
 
 
 ChatRoom
+
 chatroomclient qt版聊天室PC端
+
 chatroom   包含mfc版聊天室pc端和  聊天室服务器端   都是c/c++代码 
 
 和同学合作完成的网络编程大作业，实现聊天客户端，服务端
